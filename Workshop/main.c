@@ -25,7 +25,7 @@ int main()
             clear_data();
 			i++;
     }
-    write_log("Running the program has just finished.\n");
+    write_log("The program execution has just ended.\n");
     write_log("=========================================\n\n\n\n\n");
     fclose(fd);
 	return 0;
