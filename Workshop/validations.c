@@ -156,7 +156,7 @@ void check_city()
     found = 0;
     while (i < NUMBER_OF_CITIES)
     {
-        if (stricmp(cities[i], city) == 0)
+        if (strcasecmp(cities[i], city) == 0)
         {
             found = 1;
             break ;
