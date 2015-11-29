@@ -9,7 +9,7 @@ int main()
 	i = 1;
 	create_log_file();
 	write_log("Opening the log file... Done!\n");
-	fp = fopen("students4.csv", "r");
+	fp = fopen("students.csv", "r");
 	if (!check_file_open(fp))
 		return 0;
 	while (fscanf(fp, "%s", buff) > 0)
