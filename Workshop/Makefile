@@ -11,13 +11,13 @@ FLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME):
-	 gcc -c $(FLAGS) $(SRCS)
-	 gcc -o $(NAME) $(OBJ)
+    gcc -c $(FLAGS) $(SRCS)
+    gcc -o $(NAME) $(OBJ)
 
 clean:
-    	/bin/rm -rf $(OBJ)
+	/bin/rm -rf $(OBJ)
 
-fclean: clean
-    	/bin/rm -rf $(NAME)
+flcean: clean
+	/bin/rm -rf $(NAME)
 
 re: fclean all
