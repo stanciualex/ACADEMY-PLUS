@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   header.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: astanciu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/12/03 15:34:14 by astanciu          #+#    #+#             */
+/*   Updated: 2015/12/03 15:34:35 by astanciu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef HEADER_H
 # define HEADER_H
 
@@ -5,6 +17,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
+
 #define BUFF_SIZE 255
 #define NAME_SIZE 20
 #define EMAIL_SIZE 20
@@ -36,4 +49,4 @@ void print_students();
 char *ft_itoa(int n);
 int ft_isalpha(char c);
 
-#endif // HEADER_H
+#endif

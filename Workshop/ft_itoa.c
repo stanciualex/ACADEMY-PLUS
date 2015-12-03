@@ -1,59 +1,59 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: astanciu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/12/03 15:33:09 by astanciu          #+#    #+#             */
+/*   Updated: 2015/12/03 15:34:02 by astanciu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
 
-static int reversen(int n)
+static int	nrlen(long n, int k)
 {
-    int nr;
+	int	nr;
 
-    nr = 0;
-    while (n)
-    {
-        nr = 10 * nr + n % 10;
-        n = n / 10;
-    }
-    return nr;
+	nr = 0;
+	if (n == 0)
+		return (1);
+	while (n > 0)
+	{
+		nr++;
+		n /= 10;
+	}
+	if (k == 1)
+		return (nr + 1);
+	return (nr);
 }
 
-static int numlen(int n)
+char		*ft_itoa(int n)
 {
-    int len;
+	char	*str;
+	int		nr;
+	int		k;
+	long	z;
 
-    len = 0;
-    while (n)
-    {
-        len++;
-        n /= 10;
-    }
-    return len;
-}
-
-char    *ft_itoa(int n)
-{
-    int neg;
-    int i;
-    int len;
-    char *str;
-
-    i = 0;
-    neg = 0;
-    if (n < 0)
-    {
-        neg = 1;
-        n = -n;
-    }
-    n = reversen(n);
-    len = numlen(n);
-    str = (char *)malloc(sizeof(*str) * (len + 1));
-    if (neg)
-    {
-        str[i] = '-';
-        i++;
-    }
-    while (n)
-    {
-        str[i] = (n % 10) + '0';
-        n = n / 10;
-        i++;
-    }
-    str[i] = '\0';
-    return (str);
+	k = 0;
+	z = n;
+	if (z < 0)
+	{
+		z = -z;
+		k = 1;
+	}
+	nr = nrlen(z, k);
+	str = (char*)malloc((nr + 1 + k) * sizeof(char));
+	str[nr] = '\0';
+	if (k == 1)
+		str[0] = '-';
+	nr--;
+	while (nr >= k)
+	{
+		str[nr] = z % 10 + '0';
+		z /= 10;
+		nr--;
+	}
+	return (str);
 }
