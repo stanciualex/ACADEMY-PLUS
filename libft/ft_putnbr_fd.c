@@ -6,7 +6,7 @@
 /*   By: astanciu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 16:56:55 by astanciu          #+#    #+#             */
-/*   Updated: 2015/12/08 16:57:06 by astanciu         ###   ########.fr       */
+/*   Updated: 2015/12/08 17:22:29 by astanciu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 	else
 	{
-		ft_putchar_fd(nb + '0', fd);
+		ft_putchar_fd(n + '0', fd);
 	}
 }

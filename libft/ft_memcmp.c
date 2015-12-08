@@ -6,7 +6,7 @@
 /*   By: astanciu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 15:20:17 by astanciu          #+#    #+#             */
-/*   Updated: 2015/12/08 15:21:01 by astanciu         ###   ########.fr       */
+/*   Updated: 2015/12/08 17:08:31 by astanciu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n)
 	i = 0;
 	a = (char *)s1;
 	b = (char *)s2;
-	while (a[i] && b[i])
+	while (i < n)
 	{
 		if (a[i] != b[i])
 			return (a[i] - b[i]);
