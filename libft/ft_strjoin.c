@@ -1,24 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astanciu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/08 15:25:39 by astanciu          #+#    #+#             */
-/*   Updated: 2015/12/08 16:31:05 by astanciu         ###   ########.fr       */
+/*   Created: 2015/12/08 16:36:18 by astanciu          #+#    #+#             */
+/*   Updated: 2015/12/08 16:38:26 by astanciu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char *d;
+	char	*str;
+	int		i;
+	int		j;
 
-	d = (char*)malloc(sizeof(*s1) * (ft_strlen(s1) + 1));
-	if (d == NULL)
-		return (NULL);
-	ft_strcpy(d, s1);
-	return (d);
+	i = 0;
+	j = 0;
+	str = (char *)malloc(sizeof(s1) * ft_strlen((char *)s1)
+			+ sizeof(s2) * ft_strlen((char *)s2));
+	while (s1[i])
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		str[i] = s2[j];
+		j++;
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }
