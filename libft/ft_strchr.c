@@ -6,7 +6,7 @@
 /*   By: astanciu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 15:43:09 by astanciu          #+#    #+#             */
-/*   Updated: 2015/12/08 17:10:53 by astanciu         ###   ########.fr       */
+/*   Updated: 2015/12/09 13:37:05 by astanciu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ char	*ft_strchr(const char *s, int c)
 		p = (char *)&s[i];
 		return (p);
 	}
-	return (0);
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: astanciu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 16:12:29 by astanciu          #+#    #+#             */
-/*   Updated: 2015/12/08 16:12:56 by astanciu         ###   ########.fr       */
+/*   Updated: 2015/12/09 13:29:47 by astanciu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	ft_memdel(void **ap)
 {
-	free(ap);
-	ap = NULL;
+	if (*ap != NULL)
+	{
+		free(*ap);
+		*ap = NULL;
+	}
 }

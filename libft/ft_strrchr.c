@@ -6,7 +6,7 @@
 /*   By: astanciu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 15:45:46 by astanciu          #+#    #+#             */
-/*   Updated: 2015/12/08 17:11:29 by astanciu         ###   ########.fr       */
+/*   Updated: 2015/12/09 13:39:11 by astanciu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strrchr(const char *s, int c)
 	i = ft_strlen(s);
 	if (c == '\0')
 	{
-		p = (char *)&s[i - 1];
+		p = (char *)&s[i];
 		return (p);
 	}
 	while (i >= 0)
@@ -32,5 +32,5 @@ char	*ft_strrchr(const char *s, int c)
 		}
 		i--;
 	}
-	return (0);
+	return (NULL);
 }

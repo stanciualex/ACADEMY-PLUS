@@ -6,7 +6,7 @@
 /*   By: astanciu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 16:15:15 by astanciu          #+#    #+#             */
-/*   Updated: 2015/12/08 16:15:46 by astanciu         ###   ########.fr       */
+/*   Updated: 2015/12/09 13:31:12 by astanciu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	ft_strdel(char **as)
 {
-	free(as);
-	as = NULL;
+	if (*as != NULL)
+	{
+		free(*as);
+		*as = NULL;
+	}
 }
