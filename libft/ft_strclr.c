@@ -6,7 +6,7 @@
 /*   By: astanciu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 16:18:08 by astanciu          #+#    #+#             */
-/*   Updated: 2015/12/08 16:18:29 by astanciu         ###   ########.fr       */
+/*   Updated: 2015/12/09 16:07:28 by astanciu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_strclr(char *s)
 {
 	unsigned int i;
 
+	if (s == NULL)
+		return ;
 	i = 0;
 	while (s[i])
 	{
