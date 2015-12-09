@@ -6,7 +6,7 @@
 /*   By: astanciu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 16:39:01 by astanciu          #+#    #+#             */
-/*   Updated: 2015/12/08 16:40:53 by astanciu         ###   ########.fr       */
+/*   Updated: 2015/12/09 14:52:46 by astanciu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,22 @@
 
 char	*ft_strtrim(char const *s)
 {
-	char			*str;
-	unsigned int	i;
-	unsigned int	len;
+	char	*str;
+	int		i;
 
-	i = 0;
-	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
-		i++;
-	s += i;
-	len = ft_strlen((char *)s) - 1;
-	while (s[len] == ' ' || s[len] == '\n' || s[len] == '\t')
-		len--;
-	i = 0;
-	str = (char *)malloc(sizeof(s) * ft_strlen((char *)s));
-	while (i <= len)
+	if (s == NULL)
+		return (NULL);
+	str = (char *)s;
+	while (*str == ' ' || *str == '\n' || *str == '\t')
+		str++;
+	str = ft_strdup(str);
+	if (str == NULL)
+		return (NULL);
+	i = ft_strlen(str) - 1;
+	while ((str[i] == ' ' || str[i] == '\n' || str[i] == '\t') && i >= 0)
 	{
-		str[i] = s[i];
-		i++;
+		str[i] = '\0';
+		i--;
 	}
 	return (str);
 }

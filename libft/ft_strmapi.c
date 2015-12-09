@@ -6,7 +6,7 @@
 /*   By: astanciu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 16:24:34 by astanciu          #+#    #+#             */
-/*   Updated: 2015/12/08 17:19:02 by astanciu         ###   ########.fr       */
+/*   Updated: 2015/12/09 14:54:22 by astanciu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*p;
+	char			*p;
 	unsigned int	i;
-	int		len;
+	int				len;
 
 	i = 0;
 	if (s && f)

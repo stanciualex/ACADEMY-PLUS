@@ -6,7 +6,7 @@
 /*   By: astanciu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 16:51:45 by astanciu          #+#    #+#             */
-/*   Updated: 2015/12/08 17:23:49 by astanciu         ###   ########.fr       */
+/*   Updated: 2015/12/09 14:14:22 by astanciu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,21 @@
 
 void	ft_putnbr(int n)
 {
-	if (n < 0)
+	long	nr;
+
+	nr = n;
+	if (nr < 0)
 	{
 		ft_putchar('-');
-		n = -n;
+		nr = -nr;
 	}
-	if (n >= 10)
+	if (nr >= 10)
 	{
-		ft_putchar(n / 10);
-		ft_putchar(n % 10);
+		ft_putnbr(nr / 10);
+		ft_putnbr(nr % 10);
 	}
 	else
 	{
-		ft_putchar(n + '0');
+		ft_putchar(nr + '0');
 	}
 }

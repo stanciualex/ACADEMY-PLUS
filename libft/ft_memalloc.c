@@ -6,7 +6,7 @@
 /*   By: astanciu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 16:10:58 by astanciu          #+#    #+#             */
-/*   Updated: 2015/12/08 16:11:38 by astanciu         ###   ########.fr       */
+/*   Updated: 2015/12/09 14:39:51 by astanciu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,11 @@
 
 void	*ft_memalloc(size_t size)
 {
-	return (malloc(sizeof(size) + 1));
+	void *aux;
+
+	aux = (void *)malloc(size);
+	if (aux == NULL)
+		return (NULL);
+	aux = ft_memset(aux, 0, size);
+	return (aux);
 }
