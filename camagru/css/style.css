@@ -70,20 +70,29 @@ header .user {
 
 /**/
 
-.error-msg {
+.error-msg, .success-msg {
     width: 33%;
     margin: auto;
     margin-top: 1%;
     padding: 0.1em;
     padding-left: 1%;
-    color: #D8000C;
-    background-color: #FFBABA;
-    border: 1px solid #D8000C;
     overflow: hidden;
     position: relative;
 }
 
-.error-msg .close {
+.error-msg {
+  color: #D8000C;
+  background-color: #FFBABA;
+  border: 1px solid #D8000C;
+}
+
+.success-msg {
+  color: #4F8A10;
+  background-color: #DFF2BF;
+  border: 1px solid #00cc11;
+}
+
+.error-msg .close, .success-msg .close {
   position: absolute;
   top: 0;
   right: 0;
@@ -91,16 +100,16 @@ header .user {
   padding: 1%;
 }
 
-.error-msg .close:hover {
+.error-msg .close:hover, .success-msg .close:hover{
   opacity: 0.5;
   cursor: pointer;
 }
 
-.error-msg img, .error-msg p{
+.error-msg img, .error-msg p, .success-msg img, .success-msg p{
   display: inline-block;
 }
 
-.error-msg img {
+.error-msg img, .success-msg img {
   height: 100%;
   vertical-align: middle;
 }

@@ -20,6 +20,8 @@ else if ($error == 2)
 	$error_msg = "You can't acces this page, you are not logged in!";
 else if ($error == 3)
 	$error_msg = "Acces denied!";
+else if ($error == 4)
+	$error_msg = "You account is not confirmed! Please check your mail inbox.";
 
 if (isset($_GET['page']))
 	$page = $_GET['page'];
@@ -77,8 +79,6 @@ catch(PDOException $e)
 </header>
 
 <?php
-	echo $total;
-	//mail("stanciu.alex990@gmail.com", "asdas", " adsdasdasdasdasdas");
 	echo '<div class="next-div">';
 	if ($page > 1 && $total > 40)
 		echo '<a href="index.php?page=' . ($page - 1) . '" class="type2">&#8249;</a>';
@@ -110,7 +110,6 @@ if ($error)
 ?>
 
 <?php
-
 foreach ($imgs as $img)
 {
 	echo '<div class="gallery-post">';

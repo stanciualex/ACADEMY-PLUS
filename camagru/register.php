@@ -22,7 +22,7 @@ if (isset($_POST['submit']))
 	else
 	{
 		$user->register($_POST['email'], $_POST['username'], $_POST['password']);
-		$user->redirect("login.php");
+		$user->redirect("login.php?success=1");
 	}
 }
 

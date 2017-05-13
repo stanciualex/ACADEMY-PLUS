@@ -14,14 +14,30 @@ class User
       return $this->db;
     }
 
-    public function send_register_mail($email, $username)
+    public function send_register_mail($email, $username, $token)
     {
-        $subject = 'Welcome to Camagru!';
-        $message = 'Welcome, ' . $username;
-        $message .= "We ardasdasdasdasdasadasdas";
+        $url = "http://$_SERVER[HTTP_HOST]";
+        $subject = "Welcome to Camagru!";
+        $message = "Welcome, " . $username . "!\n\n";
+        $message .= "We are happy to see you here. In order to confirm your account, please click on this link: " . $url . "/camagru/confirm.php?token=" . $token . "\n\n";
+        //$message .= "We are happy to see you here. In order to confirm your account, please click on this link: http://google.com\n\n";
+        $message .= "Have a nice day,\nCamagru team";
         $headers = 'From: astanciu@student.42.fr' . "\r\n" .
-            'Reply-To: astanciu@student.42.fr' . "\r\n" .
-            'X-Mailer: PHP/' . phpversion();
+            'Reply-To: astanciu@student.42.fr' . "\r\n";
+
+        mail($email, $subject, $message, $headers);
+    }
+
+    public function send_password_mail($email, $new_password, $username)
+    {
+        $subject = "Camagru - Password recovery";
+        $message = "Hello, " . $username . "\n\n";
+        $message .= "You have just requested a password recovery. You can find you new login data below.\n";
+        $message .= "Username: " . $username . "\n";
+        $message .= "Password: " . $new_password . "\n\n";
+        $message .= "Have a nice day,\nCamagru team";
+        $headers = 'From: astanciu@student.42.fr' . "\r\n" .
+            'Reply-To: astanciu@student.42.fr' . "\r\n";
 
         mail($email, $subject, $message, $headers);
     }
@@ -31,14 +47,16 @@ class User
        try
        {
            $new_password = password_hash($password, PASSWORD_DEFAULT);
-           $stmt = $this->db->prepare("INSERT INTO users(email,username,password)
-                                                       VALUES(:email, :username, :password)");
+           $stmt = $this->db->prepare("INSERT INTO users(email,username,password,token)
+                                                       VALUES(:email, :username, :password, :token)");
 
+           $token = uniqid();
            $stmt->bindparam(":email", $email);
            $stmt->bindparam(":username", $username);
            $stmt->bindparam(":password", $new_password);
+           $stmt->bindparam(":token", $token);
            $stmt->execute();
-           //$this->send_register_mail($email, $username);
+           $this->send_register_mail($email, $username, $token);
            return $stmt;
        }
        catch(PDOException $e)
@@ -74,6 +92,69 @@ class User
        }
    }	
 
+  
+   public function get_username($id)
+    { 
+      try
+      {
+          $stmt = $this->db->prepare("SELECT username FROM users WHERE id=:id LIMIT 1");
+          $stmt->bindparam(":id", $id);
+          $stmt->execute();
+          $user = $stmt->fetch();
+          return $user['username'];
+      }
+      catch(PDOException $e)
+      {
+          echo $e->getMessage();
+          return null;
+      }
+    }
+
+    public function get_username_by_email($email)
+    { 
+      try
+      {
+          $stmt = $this->db->prepare("SELECT username FROM users WHERE email=:email LIMIT 1");
+          $stmt->bindparam(":email", $email);
+          $stmt->execute();
+          $user = $stmt->fetch();
+          return $user['username'];
+      }
+      catch(PDOException $e)
+      {
+          echo $e->getMessage();
+          return null;
+      }
+    }
+
+
+   private function randomPassword() {
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $pass = array();
+        $alphaLength = strlen($alphabet) - 1;
+        for ($i = 0; $i < 8; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        return implode($pass); 
+}
+
+   public function new_password($email)
+   {
+      $new_password = $this->randomPassword();
+      try {
+        $stmt = $this->db->prepare("UPDATE users SET password=:new_password WHERE email=:email");
+        $stmt->bindparam(":new_password", password_hash($new_password, PASSWORD_DEFAULT));
+        $stmt->bindparam(":email", $email);
+        $stmt->execute();
+        $this->send_password_mail($email, $new_password, $this->get_username_by_email($email));
+      }
+      catch(PDOException $e)
+       {
+           echo $e->getMessage();
+       }
+   }
+
    public function user_exist($email, $username)
    {
      try
@@ -96,23 +177,6 @@ class User
        }
           
    }
-
-   public function get_username($id)
-    { 
-      try
-      {
-          $stmt = $this->db->prepare("SELECT username FROM users WHERE id=:id LIMIT 1");
-          $stmt->bindparam(":id", $id);
-          $stmt->execute();
-          $user = $stmt->fetch();
-          return $user['username'];
-      }
-      catch(PDOException $e)
-      {
-          echo $e->getMessage();
-          return null;
-      }
-    }
 
    public function user_like_photo($id)
    {
@@ -161,6 +225,18 @@ class User
       {
         return false;
       }
+   }
+
+   public function is_activated()
+   {
+       $stmt = $this->db->prepare("SELECT token FROM users WHERE id=:id LIMIT 1");
+       $stmt->bindparam(":id", $_SESSION['user_id']);
+       $stmt->execute();
+       $user = $stmt->fetch();
+       if ($user['token'])
+          return false;
+       else
+          return true;
    }
 
    public function redirect($url)

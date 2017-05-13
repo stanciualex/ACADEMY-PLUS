@@ -7,6 +7,9 @@ if (!$user->is_loggedin())
 	$user->redirect("index.php?error=2");
 }
 
+if (!$user->is_activated())
+	$user->redirect("index.php?error=4");
+
 $user_msg = "You are not logged in.";
 
 if ($user->is_loggedin())
