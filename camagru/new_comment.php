@@ -22,7 +22,9 @@ try
  	$stmt->bindparam(":id_photo", $id_photo);
 	$stmt->bindparam(":id_user", $_SESSION['user_id']);
   	$stmt->bindparam(":comment", $comment);
+  	$user->send_comment_mail($_SESSION['user_id'], $id_photo, $comment);
   	$stmt->execute();
+
   	$user->redirect("index.php?page=" . $page);
 }
 catch(PDOException $e)

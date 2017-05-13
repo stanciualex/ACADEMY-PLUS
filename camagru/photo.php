@@ -78,14 +78,14 @@ if ($user->is_loggedin())
 			<tr>
 				<td>
 					<ul>
-					<li><input type="file" name="file" id="file" class="inputfile" onchange="input()" />
-						<label for="file">Upload a file</label>
+					<li><input type="file" name="inputphoto" id="inputphoto" class="inputfile" accept="image/png" disabled />
+						<label for="inputphoto">Upload photo</label>
 						</li>
 					<li><button id="startbutton" disabled onclick="takePhoto()">Take photo</button></li>
 					</ul>
 				</td>
 				<td>
-					<a href="photo.php"><button id="save" onclick="newPhoto()" disabled>Save photo</button></a>
+					<button id="save" onclick="newPhoto();" disabled>Save photo</button><
 				</td>
 			</tr>
 			<tr>
@@ -100,7 +100,9 @@ if ($user->is_loggedin())
   						<option value="turban">Turban</option>
 					</select>
 				</td>
-				
+				<td>
+					<p>Note: Only <b>.png</b> formats are avilable for upload.</p>
+				</td>
 			</tr>
 		</table>
 	</div>

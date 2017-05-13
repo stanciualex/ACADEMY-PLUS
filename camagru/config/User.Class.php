@@ -20,7 +20,6 @@ class User
         $subject = "Welcome to Camagru!";
         $message = "Welcome, " . $username . "!\n\n";
         $message .= "We are happy to see you here. In order to confirm your account, please click on this link: " . $url . "/camagru/confirm.php?token=" . $token . "\n\n";
-        //$message .= "We are happy to see you here. In order to confirm your account, please click on this link: http://google.com\n\n";
         $message .= "Have a nice day,\nCamagru team";
         $headers = 'From: astanciu@student.42.fr' . "\r\n" .
             'Reply-To: astanciu@student.42.fr' . "\r\n";
@@ -32,7 +31,7 @@ class User
     {
         $subject = "Camagru - Password recovery";
         $message = "Hello, " . $username . "\n\n";
-        $message .= "You have just requested a password recovery. You can find you new login data below.\n";
+        $message .= "You have just requested a password recovery. You can find your new login data below.\n";
         $message .= "Username: " . $username . "\n";
         $message .= "Password: " . $new_password . "\n\n";
         $message .= "Have a nice day,\nCamagru team";
@@ -40,6 +39,27 @@ class User
             'Reply-To: astanciu@student.42.fr' . "\r\n";
 
         mail($email, $subject, $message, $headers);
+    }
+
+    public function send_comment_mail($id_user, $id_photo, $comment)
+    {
+        $stmt = $this->db->prepare("SELECT email, username FROM users WHERE id IN (SELECT id_user FROM photos WHERE id_photo=:id_photo) LIMIT 1");
+        $stmt->bindparam(":id_photo", $id_photo);
+        $stmt->execute();
+        $res = $stmt->fetch();
+        $email = $res['email'];
+        $username = $res['username'];
+
+        $subject = "Camagru - New comment";
+        $message = "Hey, " . $username . "\n\n";
+        $message .= "You received a new comment on your photo:\n";
+        $message .= $this->get_username($id_user) . ": " . $comment . "\n\n";
+        $message .= "Have a nice day,\nCamagru team";
+        $headers = 'From: astanciu@student.42.fr' . "\r\n" .
+            'Reply-To: astanciu@student.42.fr' . "\r\n";
+
+        mail($email, $subject, $message, $headers);
+
     }
 
     public function register($email, $username, $password)

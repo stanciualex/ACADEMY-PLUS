@@ -145,7 +145,7 @@ foreach ($imgs as $img)
 	//echo '<p><b>Cristiii:</b> frumoasa poza! :)</p>';
 	if ($user->is_loggedin())
 		echo '<form method="POST" action="new_comment.php?id_photo=' . $img['id_photo'] . '&page=' . $page . '">
-		<input class="comment-input" type="text" name="comment" placeholder="Leave a comment...">
+		<input class="comment-input" type="text" name="comment" placeholder="Leave a comment..." autocomplete="off" >
 	</form>';
 	echo '</div>';
 }
