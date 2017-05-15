@@ -2,13 +2,13 @@
 
 require_once('config/setup.php');
 
+if (!$user->is_loggedin() || !isset($_GET['id_photo']) || !isset($_GET['page']))
+{
+  $user->redirect("index.php?error=3");
+}
+
 $id_photo = $_GET['id_photo'];
 $action = $_GET['action'];
-
-if (!$user->is_loggedin() || !isset($_GET['id_photo']) || !isset($_POST['comment']))
-{
-	$user->redirect("index.php?error=3");
-}
 
 $value = 0;
 if ($action == 'up')

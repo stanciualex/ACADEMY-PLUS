@@ -37,7 +37,7 @@
         video.play();
       },
       function(err) {
-        console.log("An error occured! " + err);
+        console.log("[VIDEO] An error occured! " + err);
       }
     );
 

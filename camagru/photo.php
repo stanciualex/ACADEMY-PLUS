@@ -36,6 +36,7 @@ if ($user->is_loggedin())
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="js/script.js"></script>
 <script src="js/photo.js"></script>
+<script src="js/input.js"></script>
 </head>
 <body>
 
@@ -79,13 +80,13 @@ if ($user->is_loggedin())
 				<td>
 					<ul>
 					<li><input type="file" name="inputphoto" id="inputphoto" class="inputfile" accept="image/png" disabled />
-						<label for="inputphoto">Upload photo</label>
+						<label for="inputphoto" disabled>Upload photo</label>
 						</li>
 					<li><button id="startbutton" disabled onclick="takePhoto()">Take photo</button></li>
 					</ul>
 				</td>
 				<td>
-					<button id="save" onclick="newPhoto();" disabled>Save photo</button><
+					<button id="save" onclick="newPhoto();" disabled>Save photo</button>
 				</td>
 			</tr>
 			<tr>
@@ -107,9 +108,7 @@ if ($user->is_loggedin())
 		</table>
 	</div>
 
-
-	
-	<div class="side">
+	<div id="side" class="side">
 			<?php
 
 				foreach ($imgs as $img)
@@ -117,7 +116,7 @@ if ($user->is_loggedin())
 					echo '<div class="thumbnail">';
 					echo '<ul>';
 					echo '<li>' . $user->time_diff($img['date']) . '</li>';
-					echo '<li><a href="remove_photo.php?id=' . $img['id_photo'] . '">remove</a></li>'; 
+					echo '<li><a href="remove_photo.php?id=' . $img['id_photo'] . '">remove</a></li>';
 					echo '</ul>';
 					echo '<img src="data:image/jpg;base64,'. base64_encode($img['src']) .'"/>';
 					echo '<hr>';
@@ -131,6 +130,7 @@ if ($user->is_loggedin())
 <footer>
 	<p>2017 &copy Created by astanciu</p>
 </footer>
+
 
 </body>
 </html>

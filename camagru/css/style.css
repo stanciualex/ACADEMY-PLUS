@@ -115,7 +115,7 @@ header .user {
 }
 
 #video {
-  /*ransform: scaleX(-1);*/
+  /*transform: scaleX(-1);*/
 }
 
 /**/
@@ -172,14 +172,14 @@ footer {
   text-align: center;
   background: #004ecc;
   color: #FFFFFF;
-  cursor: pointer;  
+  cursor: pointer;
 }
 
-.main .inputfile:disabled {
-  background: red;
+.main .inputfile:disabled+label {
+  opacity: 0.6;
 }
 
-.main label:hover:not(.inputfile:disabled) {
+.main .inputfile:enabled+label:hover {
   background-color: #262626;
 }
 
@@ -391,6 +391,7 @@ footer {
 
 .gallery-post {
   width: 33%;
+  min-width: 500px;
   padding: 0.5vw 0;
   margin: 2% auto;
   position: relative;
