@@ -41,16 +41,6 @@ $image_blob = ob_get_clean();
 imagedestroy($dest);
 imagedestroy($src);
 
-
-/*
-  $image = imagecreatefromstring($img);
-  if (!file_exists("img"))
-    mkdir("img");
-  $path = "img/" . uniqid() . ".png";
-  imagepng($image, $path);
-
-*/
-
   try
   {
       $stmt = $user->get_db()->prepare("INSERT INTO photos(id_user, src, date) VALUES(:id_user, :src, :date)");

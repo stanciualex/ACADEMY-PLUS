@@ -173,27 +173,6 @@ foreach ($imgs as $img)
 	echo '</div>';
 ?>
 
-<!--
-<div class="gallery-post">
-	<ul>
-		<li>Author</li>
-		<li>Date</li>
-	</ul>
-	<div class="pic">
-		<img src="img/590220534ee2f.png">
-	</div>
-	<p>123 likes</p>
-	<p id="like-btn">I like this post</p>
-	<hr>
-	<p><b>Cristiii:</b> frumoasa poza! :)</p>
-	<p><b>Alunela:</b> Wow, ce magnific!</p>
-	<p><b>Ionica:</b> ba pula, cand imi dai banii aia fututi mortii matii</p>
-	<form method="post" action="index.php">
-		<input class="comment-input" type="text" name="comment" placeholder="Leave a comment...">
-	</form>
-</div>
--->
-
 <footer>
 	<p>2017 &copy Created by astanciu</p>
 </footer>

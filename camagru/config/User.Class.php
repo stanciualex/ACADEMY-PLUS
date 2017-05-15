@@ -16,10 +16,11 @@ class User
 
     public function send_register_mail($email, $username, $token)
     {
-        $url = "http://$_SERVER[HTTP_HOST]";
+        $path = pathinfo($_SERVER[HTTP_HOST] . $_SERVER[REQUEST_URI]);
+        $url = "http://" . $path['dirname'];
         $subject = "Welcome to Camagru!";
         $message = "Welcome, " . $username . "!\n\n";
-        $message .= "We are happy to see you here. In order to confirm your account, please click on this link: " . $url . "/camagru/confirm.php?token=" . $token . "\n\n";
+        $message .= "We are happy to see you here. In order to confirm your account, please click on this link: " . $url . "/confirm.php?token=" . $token . "\n\n";
         $message .= "Have a nice day,\nCamagru team";
         $headers = 'From: astanciu@student.42.fr' . "\r\n" .
             'Reply-To: astanciu@student.42.fr' . "\r\n";
